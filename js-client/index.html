@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Thrift Javascript Bindings - Tutorial Example</title>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="thrift.js"></script>
+  <script type="text/javascript" src="calculator_types.js"></script>
+  <script type="text/javascript" src="Calculator.js"></script>
+  <script type="text/javascript" src="ts/tutorial.js"></script>
+
+</head>
+<body>
+  <script>
+function calc() {
+  var transport = new Thrift.Transport("http://localhost:9090/api/simple");
+  var protocol  = new Thrift.Protocol(transport);
+  var client    = new ns.CalculatorClient(protocol);
+  
+  alert(client.add(111,222));
+}
+function calc2() {
+  //var transport = new Thrift.Transport("http://localhost/thrift.php");
+  var transport = new Thrift.Transport("https://localhost/thrift.php");
+  var protocol  = new Thrift.Protocol(transport);
+  var client    = new ns.CalculatorClient(protocol);
+  
+  alert(client.add(111,333));
+}
+function getCount() {
+  var transport = new Thrift.Transport("http://localhost:9090/api/simple");
+  var protocol  = new Thrift.Protocol(transport);
+  var client    = new ns.CalculatorClient(protocol);
+  
+  alert(client.getCount());
+}
+  </script>
+  <h2>Thrift Javascript Bindings</h2>
+  <input type="button" id="calculate" value="calculate" onclick="javascript:calc();"/>
+  <input type="button" id="calculate2" value="calculate2" onclick="javascript:calc2();"/>
+  <input type="button" id="count" value="count" onclick="javascript:getCount();"/>
+</body>
+</html>
